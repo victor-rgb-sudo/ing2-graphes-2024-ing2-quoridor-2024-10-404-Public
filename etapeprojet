@@ -1,0 +1,68 @@
+Étape 1 : Compréhension et cadrage du projet
+But principal : Créer un programme permettant de modéliser, visualiser, et analyser des réseaux trophiques en se basant sur la théorie des graphes.
+Approche globale : Combiner sensibilisation écologique, analyse structurelle des réseaux, et dynamique des populations.
+Composantes clés :
+Modélisation de réseaux trophiques.
+Études structurelles et fonctionnelles.
+Visualisation et interaction utilisateur.
+Étape 2 : Création et représentation des réseaux trophiques
+Construire trois réseaux trophiques distincts :
+Basés sur des écosystèmes réels.
+Différents niveaux de complexité croissante.
+Définir les propriétés des réseaux :
+Sommets : espèces ou ressources.
+Arcs : relations.
+Informations sur les sommets (ex. population, biomasse) et arcs (pondérations, étiquetages).
+Afficher les réseaux :
+Liste des sommets et arcs en console.
+Informations sur les prédécesseurs et successeurs.
+Choisir un format de sauvegarde des réseaux.
+Mesurer la complexité des réseaux :
+Nombre d’espèces.
+Hauteur trophique.
+Densité des liaisons et distribution des degrés.
+Créer une visualisation graphique des réseaux.
+Étape 3 : Analyse des aspects structurels
+Vérifier la connexité des réseaux :
+Identifier les écosystèmes séparés si le réseau n’est pas connexe.
+Analyser les sommets particuliers :
+Producteurs primaires (sans prédécesseurs).
+Derniers maillons de chaînes alimentaires (sans successeurs).
+Espèces avec une seule source d’alimentation.
+Étudier les chaînes alimentaires :
+Graphe des ascendants pour une espèce donnée.
+Niveaux trophiques associés.
+Identifier le niveau trophique maximal et les limites.
+Estimer l’importance d’une espèce :
+Indices de centralité radiale et d’intermédiarité.
+Impact d’une disparition ou raréfaction d’espèce.
+Étape 4 : Étude des aspects fonctionnels
+Simuler la dynamique des populations :
+Modèle logistique de croissance.
+Incorporer des coefficients pour interactions prédation/résources.
+Étudier la stabilité des populations (oscillations, régulations).
+Intégrer les rétroactions (feedback) :
+Impact des populations sur les ressources.
+Effets indirects entre espèces.
+Proposer une simulation interactive :
+Animation des évolutions en temps réel.
+Possibilité de pause/modification/reprise.
+Analyse des effets de neutralisation d’espèces (population mise à 0).
+Étape 5 : Extensions
+Améliorer la présentation :
+Interface graphique optimisée.
+Approfondir les simulations :
+Modèles mathématiques plus précis.
+Intégration des facteurs anthropiques (dégradation des habitats, etc.).
+Représenter les dynamiques temporelles graphiquement.
+Explorer de nouveaux modèles :
+Symbioses, pollinisations, cycles de nutriments, etc.
+Étape 6 : Recherche et documentation
+Consulter les publications scientifiques :
+Comprendre la cohérence trophique et la stabilité des réseaux.
+Appliquer et comparer des mesures structurelles et fonctionnelles.
+Proposer des démonstrations basées sur des études documentées.
+Étape 7 : Organisation et rendu
+Préparer le dépôt final :
+Code bien documenté, formaté et commenté.
+Explication claire de chaque étape et fonction.
