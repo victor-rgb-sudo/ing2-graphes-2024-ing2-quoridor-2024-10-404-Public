@@ -1,10 +1,10 @@
-#include <stdio.h>
+#include <stdio.h> //importation de la bibliothèque
 
 int main()
 {
-    int choix;
+    int choix; //déclaration des variables
     do
-    {
+    {    //affichage du menu
         printf("\n=== Menu Principal ===\n");
         printf("1. Charger un reseau\n");
         printf("2. Afficher le reseau\n");
@@ -12,7 +12,7 @@ int main()
         printf("Entrez votre choix : ");
         scanf("%d", &choix);
 
-        switch (choix)
+        switch (choix) //pour choisir l'action
         {
             case 1:
                 break;
@@ -21,10 +21,10 @@ int main()
             case 3:
                 printf("Au revoir !\n");
                 break;
-            default:
+            default: //blindage pour le menu. 
                 printf("Erreur, votre choix est invalide. Veuillez tapez une option valide.\n");
         }
-    } while (choix!=3);
+    } while (choix!=3); //pour quitter 
 
     return 0;
 }
