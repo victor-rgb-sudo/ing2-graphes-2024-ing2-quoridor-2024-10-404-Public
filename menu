@@ -1,0 +1,31 @@
+#include <stdio.h>
+
+int main()
+{
+    int choix;
+    do
+    {
+        printf("\n=== Menu Principal ===\n");
+        printf("1. Charger un reseau\n");
+        printf("2. Afficher le reseau\n");
+        printf("3. Quitter\n");
+        printf("Entrez votre choix : ");
+        scanf("%d", &choix);
+
+        switch (choix)
+        {
+            case 1:
+                break;
+            case 2:
+                break;
+            case 3:
+                printf("Au revoir !\n");
+                break;
+            default:
+                printf("Erreur, votre choix est invalide. Veuillez tapez une option valide.\n");
+        }
+    } while (choix!=3);
+
+    return 0;
+}
+
