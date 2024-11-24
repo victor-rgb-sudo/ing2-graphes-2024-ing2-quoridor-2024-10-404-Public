@@ -1,0 +1,125 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <limits.h>
+
+#define MAX_VERTICES 100
+#define INFINITY INT_MAX
+
+/// structure du graphe
+typedef struct {
+    int nombreSommets;
+    int nombreAretes;
+    int aretes[MAX_VERTICES][MAX_VERTICES]; // matrice d'adjacence
+} Graphe;
+
+///Cette fonction nous sert a initialiser le graphe a partir du fichier texte graphe.txt
+void initgraphe(Graphe *graphe, const char *nomFichier) {
+    //ouvverture du fichier texte
+    FILE *file = fopen(nomFichier, "r");
+    if (file == NULL) {
+        fprintf(stderr, "Erreur d'ouverture du fichier\n");
+        exit(1);
+    }
+
+    //lecture du fichier texte (nombre de sommets et d'arretes)
+    fscanf(file, "%d", &graphe->nombreSommets);
+    for (int i = 0; i < graphe->nombreSommets; i++) {
+        fscanf(file, "%*d");
+    }
+    fscanf(file, "%d", &graphe->nombreAretes);
+
+    //initialisation de  la matrice d'adjacence
+    for (int i = 0; i < graphe->nombreSommets; i++) {
+        for (int j = 0; j < graphe->nombreSommets; j++) {
+            graphe->aretes[i][j] = (i == j) ? 0 : INFINITY;
+        }
+    }
+
+    //remplir la matrice d'adjacence
+    for (int i = 0; i < graphe->nombreAretes; i++) {
+        int u, v, poids; // u : depart   v: arrivée   poids: longueur entre ke départ et l'arrivée
+        fscanf(file, "%d %d %d", &u, &v, &poids);
+        graphe->aretes[u][v] = poids;
+        graphe->aretes[v][u] = poids;
+    }
+    fclose(file);
+}
+
+///cette fonction implémente l'algorithme de Dijkstra (calculer le chemin le plus court)
+void algodijkstra(Graphe *graphe, int depart, int arrivee) {
+    int distance[MAX_VERTICES];
+    int precedent[MAX_VERTICES];
+    int visite[MAX_VERTICES] = {0};
+
+    //initialisation des distance
+    for (int i = 0; i < graphe->nombreSommets; i++) {
+        distance[i] = INFINITY;
+        precedent[i] = -1;
+    }
+    distance[depart] = 0;
+
+    //recherche du chemin le plus court
+    for (int i = 0; i < graphe->nombreSommets - 1; i++) {
+        int u = -1;
+        for (int j = 0; j < graphe->nombreSommets; j++) {
+            if (!visite[j] && (u == -1 || distance[j] < distance[u])) {
+                u = j;
+            }
+        }
+        visite[u] = 1; //sommet déjà visité
+
+    //visite d'un sommet voisin non visité et calcul de sa distance
+        for (int v = 0; v < graphe->nombreSommets; v++) {
+            if (graphe->aretes[u][v] < INFINITY && !visite[v]) {
+                int alt = distance[u] + graphe->aretes[u][v];
+                if (alt < distance[v]) {
+                    distance[v] = alt;
+                    precedent[v] = u;
+                }
+            }
+        }
+    }
+
+    //afficher le résultat
+    if (distance[arrivee] < INFINITY) {
+        printf("Entre %d et %d: \n "
+               "Le plus court chemin est : ", depart, arrivee); //Afficher le résultat
+
+        // chemin
+        int chemin[MAX_VERTICES];
+        int index = 0;
+        for (int v = arrivee; v != -1; v = precedent[v]) {
+            chemin[index++] = v;
+        }
+
+        //affichage du chemin (du départ à l'arrivée)
+        for (int i = index - 1; i >= 0; i--) {
+            printf("%d", chemin[i]);
+            if (i > 0) printf(" > ");
+        }
+
+        printf("\n La longueur est de %d.\n", distance[arrivee]);
+    } else {
+        printf("Pas de chemin entre %d et %d.\n", depart, arrivee); // si le chemin n'existe pas
+    }
+}
+
+
+///MAIN///
+
+int main() {
+    Graphe graphe;
+    const char *nomFichier = "graphe.txt";
+    initgraphe(&graphe, nomFichier);
+
+    //saisie des identifiants de départ et d'arrivée
+    int depart, arrivee;
+    printf("identifiant du sommet de depart i : ");
+    scanf("%d", &depart);
+    printf("identifiant du sommet d'arrivee j : ");
+    scanf("%d", &arrivee);
+
+    algodijkstra(&graphe, depart, arrivee);
+
+    return 0;
+}
